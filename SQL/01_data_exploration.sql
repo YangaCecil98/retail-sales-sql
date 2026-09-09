@@ -50,6 +50,17 @@ SELECT
     SUM(CASE WHEN Total_Amount IS NULL THEN 1 ELSE 0 END) AS Total_Amount_NULLS
 FROM retail_sales_dataset;
 
+-- Observation(s):
+-- No NULL values were identified across the dataset.
+-- This indicates that the dataset does not contain missing values
+-- in the fields examined.
+
+
+-- Conclusion:
+-- The dataset is complete with respect to NULL values, so no
+-- missing-value treatment was required during the initial
+-- exploration stage.
+
 
 -- 7. Preview the first 10 records
 SELECT TOP 10 *
@@ -74,6 +85,19 @@ FROM retail_sales_dataset
 GROUP BY Customer_ID
 HAVING COUNT(*) > 1;
 
+-- Observation:
+-- No duplicate Transaction_IDs were identified.
+--
+-- According to the contextual overview in Kaggle(data-source)
+-- the dataset used to conduct this project is purely synthetic.
+-- Consequently, the Customer_IDs may only appear once in each transaction.
+
+
+-- Conclusion:
+-- Transaction_ID functions as a unique transaction identifier
+-- within this dataset, while Customer_IDs are not unique at the
+-- transaction level.
+
 
 -- 10. Validate Gender categories
 SELECT DISTINCT Gender
@@ -83,6 +107,16 @@ FROM retail_sales_dataset;
 -- 11. Validate Product_Category categories
 SELECT DISTINCT Product_Category
 FROM retail_sales_dataset;
+
+-- Observation:
+-- Gender contains the expected categorical values.
+-- Product_Category contains the product categories represented
+-- in the dataset.
+
+
+-- Conclusion:
+-- The categorical fields appear suitable for segmentation and
+-- comparison during the sales performance analysis.
 
 
 -- 12. Check numerical ranges
@@ -97,9 +131,28 @@ SELECT
     MAX(Total_Amount) AS max_total_amount
 FROM retail_sales_dataset;
 
+-- Observation:
+-- The numerical fields contain values within plausible ranges
+-- for the dataset, with no immediately obvious invalid values.
+
+
+-- Conclusion:
+-- No numerical values required correction during the initial
+-- data validation stage.
+
 
 -- 13. Validate Total_Amount against Quantity × Price_per_Unit
 SELECT *
 FROM retail_sales_dataset
 WHERE Total_Amount <>
       CAST(Quantity AS INT) * Price_per_Unit;
+
+-- Observation:
+-- No records were returned where Total_Amount differed from
+-- Quantity × Price_per_Unit.
+
+
+-- Conclusion:
+-- Total_Amount is internally consistent with Quantity and
+-- Price_per_Unit across the dataset. The stored revenue values
+-- can therefore be used confidently in subsequent analysis.
