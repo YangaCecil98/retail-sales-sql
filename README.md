@@ -1,2 +1,2 @@
 # retail-sales-sql
-SQL-based retail sales analysis project exploring data quality, sales performance, transaction trends, product categories, and revenue patterns using Microsoft SQL Server.
+Beginner SQL project focused on retail sales data exploration and performance analysis using Microsoft SQL Server, covering data validation, sales metrics, product categories, and revenue insights
